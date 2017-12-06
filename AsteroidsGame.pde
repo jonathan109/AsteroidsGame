@@ -1,6 +1,6 @@
 Spaceship bob;
 Stars[] gazin = new Stars[300];
-Asteroid[] rocks = new Asteroid[15];
+ArrayList <Asteroid> rocks = new ArrayList<Asteroid>();
 boolean wIsPressed = false;
 boolean aIsPressed = false;
 boolean dIsPressed = false;
@@ -8,14 +8,15 @@ boolean sIsPressed = false;
 public void setup() 
 {
   size(600,600);
+  
   bob = new Spaceship();
   for(int i = 0; i < gazin.length; i++)
   {
     gazin[i] = new Stars();
   }
-  for(int i = 0; i < rocks.length; i++)
+  for(int i = 0; i < 10; i++)
   {
-    rocks[i] = new Asteroid();
+    rocks.add(new Asteroid());
   }
 }
 public void draw() 
@@ -25,10 +26,10 @@ public void draw()
   {
     gazin[i].show();
   }
-  for(int i = 0; i < rocks.length; i++)
+  for(int i = 0; i < rocks.size(); i++)
   {
-    rocks[i].move();
-    rocks[i].show();
+    rocks.get(i).move();
+    rocks.get(i).show();
   }
   bob.move();
   bob.show();
