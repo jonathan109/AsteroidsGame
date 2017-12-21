@@ -8,7 +8,6 @@ boolean sIsPressed = false;
 public void setup() 
 {
   size(600,600);
-  
   bob = new Spaceship();
   for(int i = 0; i < gazin.length; i++)
   {
