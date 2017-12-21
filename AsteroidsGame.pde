@@ -1,10 +1,13 @@
 Spaceship bob;
 Stars[] gazin = new Stars[300];
 ArrayList <Asteroid> rocks = new ArrayList<Asteroid>();
+ArrayList <Bullet> bullets = new ArrayList<Bullet>();
 boolean wIsPressed = false;
 boolean aIsPressed = false;
 boolean dIsPressed = false;
 boolean sIsPressed = false;
+boolean bIsPressed = false;
+boolean bWeapon = true;
 public void setup() 
 {
   size(600,600);
@@ -48,6 +51,23 @@ public void draw()
   {
     bob.accelerate(-.1);
   }
+  for(int i = 0; i<rocks.size();i++)
+   {
+    for(int j=0; j<bullets.size();j++)
+     {
+      if(dist((float)rocks.get(i).getX(), (float)rocks.get(i).getY(), (float)bullets.get(j).getX(),(float)bullets.get(j).getY())<35)
+      {
+        rocks.remove(i);
+        bullets.remove(j);
+        rocks.add(new Asteroid());
+      }
+     }
+    }
+ for(int i =0; i<bullets.size();i++)
+    {
+      bullets.get(i).show();
+      bullets.get(i).move();
+    } 
 }
 public void keyPressed()
 {
@@ -74,6 +94,15 @@ public void keyPressed()
   if(key=='s')
   {
     sIsPressed = true;
+  }
+  if(bWeapon == true)
+      {
+        bullets.add(new Bullet(bob));
+        bIsPressed = true;        
+      }
+  if(key=='b')
+  {
+    bIsPressed = true;
   }
 }
 public void keyReleased()
